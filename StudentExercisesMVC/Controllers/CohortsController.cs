@@ -40,6 +40,7 @@ namespace StudentExercisesMVC.Controllers
                     cmd.CommandText = @"
                         SELECT Id, Name
                         FROM Cohort
+                        ORDER BY Id ASC
                     ";
 
                     SqlDataReader reader = cmd.ExecuteReader();
@@ -100,11 +101,29 @@ namespace StudentExercisesMVC.Controllers
         // POST: Cohorts/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(Cohort cohort)
         {
             try
             {
-                // TODO: Add insert logic here
+                using (SqlConnection conn = Connection)
+                {
+                    conn.Open();
+                    using (SqlCommand cmd = conn.CreateCommand())
+                    {
+                        cmd.CommandText = @"
+                            INSERT INTO Cohort (
+                                Name
+                            ) VALUES (
+                                @name
+                            )
+                        ";
+
+                        cmd.Parameters.AddWithValue("@name", cohort.Name);
+
+
+                        cmd.ExecuteNonQuery();
+                    }
+                }
 
                 return RedirectToAction(nameof(Index));
             }
@@ -113,6 +132,7 @@ namespace StudentExercisesMVC.Controllers
                 return View();
             }
         }
+
 
         // GET: Cohorts/Edit/5
         public ActionResult Edit(int id)
