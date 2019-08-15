@@ -241,8 +241,8 @@ namespace StudentExercisesMVC.Controllers
                     using (SqlCommand cmd = conn.CreateCommand())
                     {
                         cmd.CommandText = @"
-                        Select Id FROM Student
-                        WHERE Id = @id;
+                        Select CohortId FROM Student
+                        WHERE CohortId = @id;
                         ";
 
                         cmd.Parameters.AddWithValue("@id", id);
@@ -260,8 +260,8 @@ namespace StudentExercisesMVC.Controllers
                     using (SqlCommand cmd = conn.CreateCommand())
                     {
                         cmd.CommandText = @"
-                        Select Id FROM Instructor
-                        WHERE Id = @id;
+                        Select CohortId FROM Instructor
+                        WHERE CohortId = @id;
                         ";
 
                         cmd.Parameters.AddWithValue("@id", id);
@@ -278,7 +278,7 @@ namespace StudentExercisesMVC.Controllers
                     conn.Open();
                     using (SqlCommand cmd = conn.CreateCommand())
                     {
-                        cmd.CommandText = @"
+                        cmd.CommandText = @"DELETE FROM StudentExercise WHERE CohortId = @id;
                         DELETE FROM Cohort
                         WHERE Id = @id;
                         ";
