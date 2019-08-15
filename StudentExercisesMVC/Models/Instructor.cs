@@ -8,10 +8,12 @@ namespace StudentExercisesMVC.Models
 {
     public class Instructor
     {
-        [Required]
-        public int Id { get; set; }
+        [Display(Name = "Instructor Id")]
+        [Key]
+        public int? Id { get; set; }
 
         [Required]
+        [MaxLength(20)]
         [Display(Name = "First Name")]
         public string FirstName { get; set; }
 
