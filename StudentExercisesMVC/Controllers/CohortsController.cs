@@ -278,7 +278,7 @@ namespace StudentExercisesMVC.Controllers
                     conn.Open();
                     using (SqlCommand cmd = conn.CreateCommand())
                     {
-                        cmd.CommandText = @"DELETE FROM StudentExercise WHERE CohortId = @id;
+                        cmd.CommandText = @"
                         DELETE FROM Cohort
                         WHERE Id = @id;
                         ";
