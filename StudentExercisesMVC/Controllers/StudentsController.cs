@@ -219,9 +219,7 @@ namespace StudentExercisesMVC.Controllers
         // GET: Students/Delete/5
         public ActionResult Delete(int id)
         {
-            //use GetSingleInstructor to get the Instructor you want to delete
             Student student = GetSingleStudent(id);
-            //pass that instructor into View()
             return View(student);
         }
 
