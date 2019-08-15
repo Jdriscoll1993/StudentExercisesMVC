@@ -142,7 +142,8 @@ namespace StudentExercisesMVC.Controllers
                 conn.Open();
                 using (SqlCommand cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = @"SELECT Id, [Name], Language
+                    cmd.CommandText = @"SELECT 
+                                        Id, [Name], Language
                                         FROM Exercise
                                         WHERE Id = @id";
 

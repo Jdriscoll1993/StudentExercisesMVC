@@ -241,6 +241,44 @@ namespace StudentExercisesMVC.Controllers
                     using (SqlCommand cmd = conn.CreateCommand())
                     {
                         cmd.CommandText = @"
+                        Select Id FROM Student
+                        WHERE Id = @id;
+                        ";
+
+                        cmd.Parameters.AddWithValue("@id", id);
+                        SqlDataReader reader = cmd.ExecuteReader();
+
+                        if (reader.Read())
+                        {
+                            return RedirectToAction("Error", "Home");
+                        };
+                    }
+                }
+                using (SqlConnection conn = Connection)
+                {
+                    conn.Open();
+                    using (SqlCommand cmd = conn.CreateCommand())
+                    {
+                        cmd.CommandText = @"
+                        Select Id FROM Instructor
+                        WHERE Id = @id;
+                        ";
+
+                        cmd.Parameters.AddWithValue("@id", id);
+                        SqlDataReader reader = cmd.ExecuteReader();
+
+                        if (reader.Read())
+                        {
+                            return RedirectToAction("Error", "Home");
+                        };
+                    }
+                }
+                using (SqlConnection conn = Connection)
+                {
+                    conn.Open();
+                    using (SqlCommand cmd = conn.CreateCommand())
+                    {
+                        cmd.CommandText = @"
                         DELETE FROM Cohort
                         WHERE Id = @id;
                         ";
