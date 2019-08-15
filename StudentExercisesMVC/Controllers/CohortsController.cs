@@ -196,6 +196,7 @@ namespace StudentExercisesMVC.Controllers
             }
         }
 
+
         // GET: Cohorts/Delete/5
         public ActionResult Delete(int id)
         {
